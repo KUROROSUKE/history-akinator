@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歴史総合 逆アキネーター</title>
+</head>
+<body>
+  <main>
+    <h1>歴史総合 逆アキネーター</h1>
+
+    <p id="status">ゲームを開始してください。</p>
+    <p>残りターン: <span id="turns">-</span></p>
+
+    <select id="categorySelect">
+      <option value="人物">人物</option>
+      <option value="出来事">出来事</option>
+      <option value="条約">条約</option>
+      <option value="制度・思想">制度・思想</option>
+    </select>
+
+    <p>
+      Jev入力:
+      <span id="tokens">0</span> tokens
+      /
+      推定料金:
+      <span id="cost">$0.000000</span>
+    </p>
+
+    <button id="startButton">新しいゲーム</button>
+
+    <hr>
+
+    <section>
+      <h2>質問する</h2>
+
+      <input
+        id="questionInput"
+        type="text"
+        maxlength="100"
+        placeholder="例: 日本人ですか？"
+      >
+
+      <button id="questionButton" disabled>
+        質問
+      </button>
+
+      <p id="judgeResult"></p>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>答える</h2>
+
+      <input
+        id="guessInput"
+        type="text"
+        maxlength="100"
+        placeholder="例: 東條英機"
+      >
+
+      <button id="guessButton" disabled>
+        回答
+      </button>
+
+      <p id="guessResult"></p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
