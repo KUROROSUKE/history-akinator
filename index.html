@@ -3,71 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jevを使った歴史総合の逆アキネーター">
   <title>歴史総合 逆アキネーター</title>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main>
-    <h1>歴史総合 逆アキネーター</h1>
+  <main class="app">
+    <section id="startScreen" class="start-screen">
+      <div class="start-content">
+        <div class="logo">
+          <div class="logo-icon">?</div>
+          <div>
+            <h1>歴史総合<br>逆アキネーター</h1>
+            <p>20ターン以内に正体を当てよう</p>
+          </div>
+        </div>
 
-    <p id="status">ゲームを開始してください。</p>
-    <p>残りターン: <span id="turns">-</span></p>
-
-    <select id="categorySelect">
-      <option value="人物">人物</option>
-      <option value="出来事">出来事</option>
-      <option value="条約">条約</option>
-      <option value="制度・思想">制度・思想</option>
-    </select>
-
-    <p>
-      Jev入力:
-      <span id="tokens">0</span> tokens
-      /
-      推定料金:
-      <span id="cost">$0.000000</span>
-    </p>
-
-    <button id="startButton">新しいゲーム</button>
-
-    <hr>
-
-    <section>
-      <h2>質問する</h2>
-
-      <input
-        id="questionInput"
-        type="text"
-        maxlength="100"
-        placeholder="例: 日本人ですか？"
-      >
-
-      <button id="questionButton" disabled>
-        質問
-      </button>
-
-      <p id="judgeResult"></p>
+        <div class="start-card">
+          <h2>カテゴリを選ぶ</h2>
+          <div id="categoryGrid" class="category-grid">
+            <p>読み込み中...</p>
+          </div>
+          <button id="startButton" class="main-button" disabled>スタート</button>
+        </div>
+      </div>
     </section>
 
-    <hr>
+    <section id="gameScreen" class="chat-app hidden">
+      <header class="chat-header">
+        <div>
+          <span class="mini-label">HISTORY AKINATOR</span>
+          <h2 id="currentCategory">人物</h2>
+        </div>
+        <div class="header-right">
+          <div class="turn-counter">
+            <span>残り</span>
+            <strong id="turns">20</strong>
+          </div>
+          <button id="newGameButton" class="icon-button" title="新しいゲーム" aria-label="新しいゲーム">↻</button>
+        </div>
+      </header>
 
-    <section>
-      <h2>答える</h2>
+      <div id="chatMessages" class="chat-messages"></div>
 
-      <input
-        id="guessInput"
-        type="text"
-        maxlength="100"
-        placeholder="例: 東條英機"
-      >
+      <div class="chat-footer">
+        <div class="question-input-row">
+          <textarea id="questionInput" maxlength="100" rows="1" placeholder="YES / NOで答えられる質問を入力..."></textarea>
+          <button id="questionButton" class="send-button" disabled aria-label="質問を送信">↑</button>
+        </div>
+        <div class="footer-bottom">
+          <span><span id="questionLength">0</span> / 100</span>
+          <button id="openGuessButton" class="guess-open-button">答えが分かった</button>
+        </div>
+      </div>
 
-      <button id="guessButton" disabled>
-        回答
-      </button>
+      <div id="guessPanel" class="guess-panel hidden">
+        <div class="guess-box">
+          <button id="closeGuessButton" class="close-button" aria-label="閉じる">×</button>
+          <h3>正解を当てる</h3>
+          <p>回答も1ターン消費します</p>
+          <input id="guessInput" maxlength="100" placeholder="例：東條英機">
+          <button id="guessButton" class="main-button" disabled>回答する</button>
+        </div>
+      </div>
 
-      <p id="guessResult"></p>
+      <div class="usage">
+        <span>Jev <strong id="tokens">0</strong> tokens</span>
+        <span id="cost">$0.000000</span>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="result-screen hidden">
+      <div class="result-card">
+        <span id="resultEmoji" class="result-emoji">✓</span>
+        <span id="resultLabel" class="result-label">CORRECT</span>
+        <h2 id="resultTitle">正解</h2>
+        <p id="resultDescription"></p>
+        <div class="result-stats">
+          <div><span>ターン</span><strong id="resultTurns">-</strong></div>
+          <div><span>Jev入力</span><strong id="resultTokens">0</strong></div>
+          <div><span>料金</span><strong id="resultCost">$0</strong></div>
+        </div>
+        <button id="resultNewGameButton" class="main-button">もう一度</button>
+      </div>
     </section>
   </main>
 
+  <div id="toast" class="toast hidden" role="alert"></div>
   <script src="./app.js"></script>
 </body>
 </html>
